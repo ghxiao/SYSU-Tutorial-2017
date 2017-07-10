@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:rel="http://www.perceive.net/schemas/relationship/">
+
+<rdf:Description rdf:about="http://example.org/#green-goblin">
+	<rel:enemyOf rdf:resource="http://example.org/#spiderman"/>
+	<rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+	<foaf:name>Green Goblin</foaf:name>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://example.org/#spiderman">
+	<rel:enemyOf rdf:resource="http://example.org/#green-goblin"/>
+	<rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+	<foaf:name>Spiderman</foaf:name>
+	<foaf:name xml:lang="ru">Человек-паук</foaf:name>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://example.org/#guohui">
+	<rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+	<foaf:name xml:lang="en">Guohui Xiao</foaf:name>
+	<foaf:name xml:lang="zh">肖国辉</foaf:name>
+	<foaf:mbox rdf:resource="mailto:xiao@inf.unibz.it"/>
+	<foaf:homepage rdf:resource="http://www.ghxiao.org"/>
+	<foaf:knows rdf:resource="http://example.org/#spidermain"/>
+	<foaf:knows rdf:resource="http://example.org/#green-goblin"/>
+</rdf:Description>
+
+</rdf:RDF>
