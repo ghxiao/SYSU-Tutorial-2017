@@ -20,4 +20,4 @@
     foaf:mbox <mailto:xiao@inf.unibz.it> ;
     foaf:homepage <http://www.ghxiao.org> .
     
-<#guohui> foaf:knows <#spidermain>, <#green-goblin>.
+<#guohui> foaf:knows <#spiderman>, <#green-goblin>.
