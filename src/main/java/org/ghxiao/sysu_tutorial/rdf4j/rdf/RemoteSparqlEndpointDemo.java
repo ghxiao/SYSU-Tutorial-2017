@@ -1,4 +1,4 @@
-package org.ghxiao.sysu_tutorial.rdf4j;
+package org.ghxiao.sysu_tutorial.rdf4j.rdf;
 
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.query.BindingSet;
