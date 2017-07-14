@@ -1,0 +1,3113 @@
+@prefix : <http://www.co-ode.org/ontologies/pizza#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://www.co-ode.org/ontologies/pizza> a owl:Ontology ;
+	owl:versionIRI <http://www.co-ode.org/ontologies/pizza/2.0.0> ;
+	<http://purl.org/dc/terms/provenance> """v2.0 Added new annotations to the ontology using standard/well-know annotation properties
+
+v1.5. Removed protege.owl import and references. Made ontology URI date-independent
+
+v1.4. Added Food class (used in domain/range of hasIngredient), Added several hasCountryOfOrigin restrictions on pizzas, Made hasTopping invers functional"""@en ;
+	<http://purl.org/dc/terms/contributor> "Alan Rector" ;
+	<http://purl.org/dc/terms/license> "Creative Commons Attribution 3.0 (CC BY 3.0)" ;
+	<http://purl.org/dc/elements/1.1/description> """An ontology about pizzas and their toppings.
+
+This is an example ontology that contains all constructs required for the various versions of the Pizza Tutorial run by Manchester University (see http://owl.cs.manchester.ac.uk/publications/talks-and-tutorials/protg-owl-tutorial)."""@en ;
+	<http://purl.org/dc/elements/1.1/title> "pizza"@en ;
+	<http://purl.org/dc/terms/contributor> "Matthew Horridge" , "Chris Wroe" , "Robert Stevens" ;
+	rdfs:label "pizza" ;
+	owl:versionInfo "2.0" ;
+	<http://purl.org/dc/terms/contributor> "Nick Drummond" .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/elements/1.1/description
+
+<http://purl.org/dc/elements/1.1/description> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/elements/1.1/title
+
+<http://purl.org/dc/elements/1.1/title> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/contributor
+
+<http://purl.org/dc/terms/contributor> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/license
+
+<http://purl.org/dc/terms/license> a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/provenance
+
+<http://purl.org/dc/terms/provenance> a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#altLabel
+
+<http://www.w3.org/2004/02/skos/core#altLabel> a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#definition
+
+<http://www.w3.org/2004/02/skos/core#definition> a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2004/02/skos/core#prefLabel
+
+<http://www.w3.org/2004/02/skos/core#prefLabel> a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#hasBase
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#hasBase> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasIngredient> ;
+	owl:inverseOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#isBaseOf> ;
+	a owl:FunctionalProperty , owl:InverseFunctionalProperty ;
+	rdfs:domain <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdfs:range <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaBase> .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin> a owl:ObjectProperty .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#hasIngredient
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#hasIngredient> a owl:ObjectProperty ;
+	owl:inverseOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#isIngredientOf> ;
+	a owl:TransitiveProperty ;
+	rdfs:domain <http://www.co-ode.org/ontologies/pizza/pizza.owl#Food> ;
+	rdfs:range <http://www.co-ode.org/ontologies/pizza/pizza.owl#Food> ;
+	rdfs:comment "NB Transitive - the ingredients of ingredients are ingredients of the whole"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> a owl:ObjectProperty , owl:FunctionalProperty ;
+	rdfs:range <http://www.co-ode.org/ontologies/pizza/pizza.owl#Spiciness> ;
+	rdfs:comment "A property created to be used with the ValuePartition - Spiciness."@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasIngredient> ;
+	owl:inverseOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#isToppingOf> ;
+	a owl:InverseFunctionalProperty ;
+	rdfs:domain <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdfs:range <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdfs:comment "Note that hasTopping is inverse functional because isToppingOf is functional"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#isBaseOf
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#isBaseOf> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#isIngredientOf> ;
+	a owl:FunctionalProperty , owl:InverseFunctionalProperty .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#isIngredientOf
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#isIngredientOf> a owl:ObjectProperty , owl:TransitiveProperty ;
+	rdfs:comment "The inverse property tree to hasIngredient - all subproperties and attributes of the properties should reflect those under hasIngredient."@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#isToppingOf
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#isToppingOf> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#isIngredientOf> ;
+	a owl:FunctionalProperty ;
+	rdfs:comment "Any given instance of topping should only be added to a single pizza (no cheap half-measures on our pizzas)"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#American
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#American> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#American> rdfs:subClassOf _:genid2 .
+
+_:genid2 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#American> rdfs:subClassOf _:genid3 .
+
+_:genid3 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#American> rdfs:subClassOf _:genid4 .
+
+_:genid4 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid5 .
+
+_:genid5 a owl:Class ;
+	owl:unionOf _:genid8 .
+
+_:genid8 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid7 .
+
+_:genid7 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> ;
+	rdf:rest _:genid6 .
+
+_:genid6 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#American> rdfs:subClassOf _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin> ;
+	owl:hasValue <http://www.co-ode.org/ontologies/pizza/pizza.owl#America> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#American> rdfs:label "American"@en , "Americana"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "American"@en , "American Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "American"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid10 .
+
+_:genid10 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#HotGreenPepperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> rdfs:subClassOf _:genid11 .
+
+_:genid11 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#JalapenoPepperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> rdfs:subClassOf _:genid12 .
+
+_:genid12 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> rdfs:subClassOf _:genid13 .
+
+_:genid13 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> rdfs:subClassOf _:genid14 .
+
+_:genid14 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> rdfs:subClassOf _:genid15 .
+
+_:genid15 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid16 .
+
+_:genid16 a owl:Class ;
+	owl:unionOf _:genid21 .
+
+_:genid21 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HotGreenPepperTopping> ;
+	rdf:rest _:genid20 .
+
+_:genid20 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#JalapenoPepperTopping> ;
+	rdf:rest _:genid19 .
+
+_:genid19 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid18 .
+
+_:genid18 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> ;
+	rdf:rest _:genid17 .
+
+_:genid17 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> rdfs:subClassOf _:genid22 .
+
+_:genid22 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin> ;
+	owl:hasValue <http://www.co-ode.org/ontologies/pizza/pizza.owl#America> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> rdfs:label "AmericanHot"@en , "AmericanaPicante"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "American Hot"@en , "American Hot Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "American Hot"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping> ;
+	rdfs:label "AnchoviesTopping"@en , "CoberturaDeAnchovies"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Anchovies"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#ArtichokeTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ArtichokeTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid23 .
+
+_:genid23 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ArtichokeTopping> rdfs:label "ArtichokeTopping"@en , "CoberturaDeArtichoke"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Artichoke"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#AsparagusTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AsparagusTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid24 .
+
+_:genid24 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#AsparagusTopping> rdfs:label "AsparagusTopping"@en , "CoberturaDeAspargos"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Asparagus"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid25 .
+
+_:genid25 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> rdfs:subClassOf _:genid26 .
+
+_:genid26 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> rdfs:subClassOf _:genid27 .
+
+_:genid27 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> rdfs:subClassOf _:genid28 .
+
+_:genid28 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PrawnsTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> rdfs:subClassOf _:genid29 .
+
+_:genid29 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TobascoPepperSauce> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> rdfs:subClassOf _:genid30 .
+
+_:genid30 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> rdfs:subClassOf _:genid31 .
+
+_:genid31 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid32 .
+
+_:genid32 a owl:Class ;
+	owl:unionOf _:genid38 .
+
+_:genid38 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid37 .
+
+_:genid37 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> ;
+	rdf:rest _:genid36 .
+
+_:genid36 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> ;
+	rdf:rest _:genid35 .
+
+_:genid35 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PrawnsTopping> ;
+	rdf:rest _:genid34 .
+
+_:genid34 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TobascoPepperSauce> ;
+	rdf:rest _:genid33 .
+
+_:genid33 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> rdfs:label "Cajun"@en , "Cajun"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Cajun"@en , "Cajun Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Cajun"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#CajunSpiceTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CajunSpiceTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#HerbSpiceTopping> , _:genid39 .
+
+_:genid39 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CajunSpiceTopping> owl:disjointWith <http://www.co-ode.org/ontologies/pizza/pizza.owl#RosemaryTopping> ;
+	rdfs:label "CajunSpiceTopping"@en , "CoberturaDeCajun"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Cajun Spice"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid40 .
+
+_:genid40 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> rdfs:label "CaperTopping"@en , "CoberturaDeCaper"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Caper"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid41 .
+
+_:genid41 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:subClassOf _:genid42 .
+
+_:genid42 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:subClassOf _:genid43 .
+
+_:genid43 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:subClassOf _:genid44 .
+
+_:genid44 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:subClassOf _:genid45 .
+
+_:genid45 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:subClassOf _:genid46 .
+
+_:genid46 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:subClassOf _:genid47 .
+
+_:genid47 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:subClassOf _:genid48 .
+
+_:genid48 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid49 .
+
+_:genid49 a owl:Class ;
+	owl:unionOf _:genid56 .
+
+_:genid56 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> ;
+	rdf:rest _:genid55 .
+
+_:genid55 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> ;
+	rdf:rest _:genid54 .
+
+_:genid54 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> ;
+	rdf:rest _:genid53 .
+
+_:genid53 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid52 .
+
+_:genid52 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid51 .
+
+_:genid51 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> ;
+	rdf:rest _:genid50 .
+
+_:genid50 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> rdfs:label "Capricciosa"@en , "Capricciosa"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Capricciosa"@en , "Capricciosa Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Capricciosa"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid57 .
+
+_:genid57 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GoatsCheeseTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina> rdfs:subClassOf _:genid58 .
+
+_:genid58 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina> rdfs:subClassOf _:genid59 .
+
+_:genid59 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#SundriedTomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina> rdfs:subClassOf _:genid60 .
+
+_:genid60 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina> rdfs:subClassOf _:genid61 .
+
+_:genid61 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid62 .
+
+_:genid62 a owl:Class ;
+	owl:unionOf _:genid66 .
+
+_:genid66 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GoatsCheeseTopping> ;
+	rdf:rest _:genid65 .
+
+_:genid65 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid64 .
+
+_:genid64 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SundriedTomatoTopping> ;
+	rdf:rest _:genid63 .
+
+_:genid63 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina> rdfs:label "Caprina"@en , "Caprina"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Caprina"@en , "Caprina Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Caprina"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdfs:label "CheeseTopping"@en , "CoberturaDeQueijo"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Cheese"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseyPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseyPizza> a owl:Class ;
+	owl:equivalentClass _:genid67 .
+
+_:genid67 owl:intersectionOf _:genid70 .
+
+_:genid70 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid68 .
+
+_:genid68 a rdf:List ;
+	rdf:first _:genid69 .
+
+_:genid69 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> .
+
+_:genid68 rdf:rest rdf:nil .
+
+_:genid67 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseyPizza> rdfs:label "CheesyPizza"@en , "PizzaComQueijo"@pt ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any pizza that has at least 1 cheese topping."@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Cheesy Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseyVegetableTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseyVegetableTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> , <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> ;
+	rdfs:comment "This class will be unsatisfiable. This is because we have given it 2 disjoint parents, which means it could never have any instances (as nothing can be both a CheeseTopping and a VegetableTopping). NB Called ProbeInconsistentTopping in the ProtegeOWL Tutorial."@en ;
+	rdfs:label "CheesyVegetableTopping"@en , "CoberturaDeQueijoComVegetais"@pt .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#ChickenTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ChickenTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> , _:genid71 .
+
+_:genid71 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ChickenTopping> rdfs:label "ChickenTopping"@en , "CoberturaDeFrango"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Chicken"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Country
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Country> a owl:Class ;
+	owl:equivalentClass _:genid72 .
+
+_:genid72 owl:intersectionOf _:genid80 .
+
+_:genid80 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#DomainConcept> ;
+	rdf:rest _:genid73 .
+
+_:genid73 a rdf:List ;
+	rdf:first _:genid74 .
+
+_:genid74 a owl:Class ;
+	owl:oneOf _:genid79 .
+
+_:genid79 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#America> ;
+	rdf:rest _:genid78 .
+
+_:genid78 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#England> ;
+	rdf:rest _:genid77 .
+
+_:genid77 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#France> ;
+	rdf:rest _:genid76 .
+
+_:genid76 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Germany> ;
+	rdf:rest _:genid75 .
+
+_:genid75 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy> ;
+	rdf:rest rdf:nil .
+
+_:genid73 rdf:rest rdf:nil .
+
+_:genid72 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Country> rdfs:comment "A class that is equivalent to the set of individuals that are described in the enumeration - ie Countries can only be either America, England, France, Germany or Italy and nothing else. Note that these individuals have been asserted to be allDifferent from each other."@en ;
+	rdfs:label "Country"@en , "Pais"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Country"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#DeepPanBase
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#DeepPanBase> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaBase> ;
+	owl:disjointWith <http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyBase> ;
+	rdfs:label "BaseEspessa"@pt , "DeepPanBase"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Deep Pan Base"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#DomainConcept
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#DomainConcept> a owl:Class ;
+	owl:disjointWith <http://www.co-ode.org/ontologies/pizza/pizza.owl#ValuePartition> ;
+	rdfs:label "DomainThing"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Domain Thing"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid81 .
+
+_:genid81 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> rdfs:subClassOf _:genid82 .
+
+_:genid82 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> rdfs:subClassOf _:genid83 .
+
+_:genid83 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> rdfs:subClassOf _:genid84 .
+
+_:genid84 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> rdfs:subClassOf _:genid85 .
+
+_:genid85 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#SpinachTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> rdfs:subClassOf _:genid86 .
+
+_:genid86 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> rdfs:subClassOf _:genid87 .
+
+_:genid87 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid88 .
+
+_:genid88 a owl:Class ;
+	owl:unionOf _:genid94 .
+
+_:genid94 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> ;
+	rdf:rest _:genid93 .
+
+_:genid93 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid92 .
+
+_:genid92 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid91 .
+
+_:genid91 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> ;
+	rdf:rest _:genid90 .
+
+_:genid90 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SpinachTopping> ;
+	rdf:rest _:genid89 .
+
+_:genid89 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> rdfs:label "Fiorentina"@en , "Fiorentina"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Fiorentina"@en , "Fiorentina Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Fiorentina"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> , _:genid95 .
+
+_:genid95 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping> rdfs:label "CoberturaDePeixe"@pt , "SeafoodTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Seafood"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Food
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Food> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#DomainConcept> ;
+	rdfs:label "Food"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Food"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#FourCheesesTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourCheesesTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> , _:genid96 .
+
+_:genid96 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourCheesesTopping> rdfs:label "CoberturaQuatroQueijos"@pt , "FourCheesesTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Four Cheeses"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid97 .
+
+_:genid97 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:subClassOf _:genid98 .
+
+_:genid98 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:subClassOf _:genid99 .
+
+_:genid99 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:subClassOf _:genid100 .
+
+_:genid100 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:subClassOf _:genid101 .
+
+_:genid101 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:subClassOf _:genid102 .
+
+_:genid102 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:subClassOf _:genid103 .
+
+_:genid103 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:subClassOf _:genid104 .
+
+_:genid104 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid105 .
+
+_:genid105 a owl:Class ;
+	owl:unionOf _:genid112 .
+
+_:genid112 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> ;
+	rdf:rest _:genid111 .
+
+_:genid111 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> ;
+	rdf:rest _:genid110 .
+
+_:genid110 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid109 .
+
+_:genid109 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> ;
+	rdf:rest _:genid108 .
+
+_:genid108 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid107 .
+
+_:genid107 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> ;
+	rdf:rest _:genid106 .
+
+_:genid106 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> rdfs:label "FourSeasons"@en , "QuatroQueijos"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Four Seasons"@en , "Four Seasons Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Four Seasons"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#FruitTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FruitTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdfs:label "CoberturaDeFrutas"@pt , "FruitTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Fruit"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#FruttiDiMare
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FruttiDiMare> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid113 .
+
+_:genid113 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FruttiDiMare> rdfs:subClassOf _:genid114 .
+
+_:genid114 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MixedSeafoodTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FruttiDiMare> rdfs:subClassOf _:genid115 .
+
+_:genid115 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FruttiDiMare> rdfs:subClassOf _:genid116 .
+
+_:genid116 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid117 .
+
+_:genid117 a owl:Class ;
+	owl:unionOf _:genid120 .
+
+_:genid120 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> ;
+	rdf:rest _:genid119 .
+
+_:genid119 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MixedSeafoodTopping> ;
+	rdf:rest _:genid118 .
+
+_:genid118 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#FruttiDiMare> rdfs:label "FrutosDoMar"@pt , "FruttiDiMare"@en ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Frutti Di Mare"@en , "Frutti Di Mare Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Frutti Di Mare"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid121 .
+
+_:genid121 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> rdfs:label "CoberturaDeAlho"@pt , "GarlicTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Garlic"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid122 .
+
+_:genid122 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid123 .
+
+_:genid123 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid124 .
+
+_:genid124 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid125 .
+
+_:genid125 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid126 .
+
+_:genid126 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid127 .
+
+_:genid127 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PetitPoisTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid128 .
+
+_:genid128 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#SlicedTomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid129 .
+
+_:genid129 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:subClassOf _:genid130 .
+
+_:genid130 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid131 .
+
+_:genid131 a owl:Class ;
+	owl:unionOf _:genid139 .
+
+_:genid139 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping> ;
+	rdf:rest _:genid138 .
+
+_:genid138 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid137 .
+
+_:genid137 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> ;
+	rdf:rest _:genid136 .
+
+_:genid136 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid135 .
+
+_:genid135 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> ;
+	rdf:rest _:genid134 .
+
+_:genid134 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PetitPoisTopping> ;
+	rdf:rest _:genid133 .
+
+_:genid133 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SlicedTomatoTopping> ;
+	rdf:rest _:genid132 .
+
+_:genid132 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> rdfs:label "Giardiniera"@en , "Giardiniera"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Giardiniera"@en , "Giardiniera Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Giardiniera"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#GoatsCheeseTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#GoatsCheeseTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> , _:genid140 .
+
+_:genid140 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#GoatsCheeseTopping> rdfs:label "CoberturaDeQueijoDeCabra"@pt , "GoatsCheeseTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Goats Cheese"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#GorgonzolaTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#GorgonzolaTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> , _:genid141 .
+
+_:genid141 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#GorgonzolaTopping> rdfs:label "CoberturaDeGorgonzola"@pt , "GorgonzolaTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Gorgonzola"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#GreenPepperTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#GreenPepperTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PepperTopping> ;
+	rdfs:label "CoberturaDePimentaoVerde"@pt , "GreenPepperTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Green Pepper"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> ;
+	rdfs:label "CoberturaDePresunto"@pt , "HamTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Ham"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#HerbSpiceTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#HerbSpiceTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdfs:label "CoberturaDeErvas"@pt , "HerbSpiceTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Herb Spice"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Spiciness> ;
+	rdfs:label "Hot"@en , "Picante"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Hot"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#HotGreenPepperTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#HotGreenPepperTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#GreenPepperTopping> , _:genid142 .
+
+_:genid142 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#HotGreenPepperTopping> rdfs:label "CoberturaDePimentaoVerdePicante"@pt , "HotGreenPepperTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Hot Green Pepper"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#HotSpicedBeefTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#HotSpicedBeefTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> , _:genid143 .
+
+_:genid143 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#HotSpicedBeefTopping> rdfs:label "CoberturaDeBifePicante"@pt , "HotSpicedBeefTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Hot Spiced Beef"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#IceCream
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#IceCream> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Food> , _:genid144 .
+
+_:genid144 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#FruitTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#IceCream> rdfs:comment "A class to demonstrate mistakes made with setting a property domain. The property hasTopping has a domain of Pizza. This means that the reasoner can infer that all individuals using the hasTopping property must be of type Pizza. Because of the restriction on this class, all members of IceCream must use the hasTopping property, and therefore must also be members of Pizza. However, Pizza and IceCream are disjoint, so this causes an inconsistency. If they were not disjoint, IceCream would be inferred to be a subclass of Pizza."@en ;
+	rdfs:label "IceCream"@en , "Sorvete"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Ice Cream"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#InterestingPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#InterestingPizza> a owl:Class ;
+	owl:equivalentClass _:genid145 .
+
+_:genid145 owl:intersectionOf _:genid148 .
+
+_:genid148 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid146 .
+
+_:genid146 a rdf:List ;
+	rdf:first _:genid147 .
+
+_:genid147 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:minCardinality "3"^^xsd:nonNegativeInteger .
+
+_:genid146 rdf:rest rdf:nil .
+
+_:genid145 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#InterestingPizza> rdfs:label "InterestingPizza"@en , "PizzaInteressante"@pt ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any pizza that has at least 3 toppings. Note that this is a cardinality constraint on the hasTopping property and NOT a qualified cardinality constraint (QCR). A QCR would specify from which class the members in this relationship must be. eg has at least 3 toppings from PizzaTopping. This is currently not supported in OWL."@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Interesting Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#JalapenoPepperTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#JalapenoPepperTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PepperTopping> , _:genid149 .
+
+_:genid149 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#JalapenoPepperTopping> rdfs:label "CoberturaDeJalapeno"@pt , "JalapenoPepperTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Jalapeno Pepper"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid150 .
+
+_:genid150 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> rdfs:subClassOf _:genid151 .
+
+_:genid151 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> rdfs:subClassOf _:genid152 .
+
+_:genid152 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> rdfs:subClassOf _:genid153 .
+
+_:genid153 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> rdfs:subClassOf _:genid154 .
+
+_:genid154 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> rdfs:subClassOf _:genid155 .
+
+_:genid155 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid156 .
+
+_:genid156 a owl:Class ;
+	owl:unionOf _:genid161 .
+
+_:genid161 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> ;
+	rdf:rest _:genid160 .
+
+_:genid160 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid159 .
+
+_:genid159 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> ;
+	rdf:rest _:genid158 .
+
+_:genid158 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid157 .
+
+_:genid157 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> rdfs:label "LaReine"@en , "LaReine"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "La Reine"@en , "La Reine Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "La Reine"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid162 .
+
+_:genid162 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping> rdfs:label "CoberturaDeLeek"@pt , "LeekTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Leek"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Margherita
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Margherita> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid163 .
+
+_:genid163 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Margherita> rdfs:subClassOf _:genid164 .
+
+_:genid164 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Margherita> rdfs:subClassOf _:genid165 .
+
+_:genid165 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid166 .
+
+_:genid166 a owl:Class ;
+	owl:unionOf _:genid168 .
+
+_:genid168 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid167 .
+
+_:genid167 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Margherita> rdfs:label "Margherita"@en , "Margherita"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Margherita"@en , "Margherita Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Margherita"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdfs:label "CoberturaDeCarne"@pt , "MeatTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Meat"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatyPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatyPizza> a owl:Class ;
+	owl:equivalentClass _:genid169 .
+
+_:genid169 owl:intersectionOf _:genid172 .
+
+_:genid172 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid170 .
+
+_:genid170 a rdf:List ;
+	rdf:first _:genid171 .
+
+_:genid171 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> .
+
+_:genid170 rdf:rest rdf:nil .
+
+_:genid169 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatyPizza> rdfs:label "MeatyPizza"@en , "PizzaDeCarne"@pt ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any pizza that has at least one meat topping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Meaty Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Spiciness> ;
+	rdfs:label "Media"@pt , "Medium"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Medium"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Spiciness> ;
+	rdfs:label "Mild"@en , "NaoPicante"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Mild"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#MixedSeafoodTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MixedSeafoodTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping> ;
+	rdfs:label "CoberturaDeFrutosDoMarMistos"@pt , "MixedSeafoodTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Mixed Seafood"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> , _:genid173 .
+
+_:genid173 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> rdfs:subClassOf _:genid174 .
+
+_:genid174 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin> ;
+	owl:hasValue <http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> rdfs:label "CoberturaDeMozzarella"@pt , "MozzarellaTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Mozzarella"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Mushroom
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Mushroom> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid175 .
+
+_:genid175 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Mushroom> rdfs:subClassOf _:genid176 .
+
+_:genid176 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Mushroom> rdfs:subClassOf _:genid177 .
+
+_:genid177 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Mushroom> rdfs:subClassOf _:genid178 .
+
+_:genid178 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid179 .
+
+_:genid179 a owl:Class ;
+	owl:unionOf _:genid182 .
+
+_:genid182 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid181 .
+
+_:genid181 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> ;
+	rdf:rest _:genid180 .
+
+_:genid180 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Mushroom> rdfs:label "Cogumelo"@pt , "Mushroom"@en ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Mushroom"@en , "Mushroom Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Mushroom"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid183 .
+
+_:genid183 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> rdfs:label "CoberturaDeCogumelo"@pt , "MushroomTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Mushroom"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdfs:comment "A pizza that can be found on a pizza menu"@en ;
+	rdfs:label "PizzaComUmNome"@pt .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid184 .
+
+_:genid184 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> rdfs:subClassOf _:genid185 .
+
+_:genid185 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> rdfs:subClassOf _:genid186 .
+
+_:genid186 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> rdfs:subClassOf _:genid187 .
+
+_:genid187 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> rdfs:subClassOf _:genid188 .
+
+_:genid188 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> rdfs:subClassOf _:genid189 .
+
+_:genid189 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid190 .
+
+_:genid190 a owl:Class ;
+	owl:unionOf _:genid195 .
+
+_:genid195 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> ;
+	rdf:rest _:genid194 .
+
+_:genid194 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> ;
+	rdf:rest _:genid193 .
+
+_:genid193 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid192 .
+
+_:genid192 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid191 .
+
+_:genid191 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> rdfs:subClassOf _:genid196 .
+
+_:genid196 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin> ;
+	owl:hasValue <http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> rdfs:label "Napoletana"@en , "Napoletana"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Napoletana"@en , "Napoletana Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Napoletana"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#NonVegetarianPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#NonVegetarianPizza> a owl:Class ;
+	owl:equivalentClass _:genid197 .
+
+_:genid197 owl:intersectionOf _:genid200 .
+
+_:genid200 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid198 .
+
+_:genid198 a rdf:List ;
+	rdf:first _:genid199 .
+
+_:genid199 a owl:Class ;
+	owl:complementOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizza> .
+
+_:genid198 rdf:rest rdf:nil .
+
+_:genid197 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#NonVegetarianPizza> owl:disjointWith <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizza> ;
+	rdfs:label "NonVegetarianPizza"@en , "PizzaNaoVegetariana"@pt ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any Pizza that is not a VegetarianPizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Non Vegetarian Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#NutTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#NutTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> , _:genid201 .
+
+_:genid201 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#NutTopping> rdfs:label "CoberturaDeCastanha"@pt , "NutTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Nut"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid202 .
+
+_:genid202 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> rdfs:label "CoberturaDeAzeitona"@pt , "OliveTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Olive"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid203 .
+
+_:genid203 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> rdfs:label "CoberturaDeCebola"@pt , "OnionTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Onion"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmaHamTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmaHamTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> , _:genid204 .
+
+_:genid204 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmaHamTopping> rdfs:label "CoberturaDePrezuntoParma"@pt , "ParmaHamTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Parma Ham"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid205 .
+
+_:genid205 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#AsparagusTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> rdfs:subClassOf _:genid206 .
+
+_:genid206 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> rdfs:subClassOf _:genid207 .
+
+_:genid207 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> rdfs:subClassOf _:genid208 .
+
+_:genid208 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> rdfs:subClassOf _:genid209 .
+
+_:genid209 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> rdfs:subClassOf _:genid210 .
+
+_:genid210 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid211 .
+
+_:genid211 a owl:Class ;
+	owl:unionOf _:genid216 .
+
+_:genid216 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AsparagusTopping> ;
+	rdf:rest _:genid215 .
+
+_:genid215 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> ;
+	rdf:rest _:genid214 .
+
+_:genid214 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid213 .
+
+_:genid213 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> ;
+	rdf:rest _:genid212 .
+
+_:genid212 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> rdfs:label "Parmense"@en , "Parmense"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Parmese"@en , "Parmese Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Parmense"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> , _:genid217 .
+
+_:genid217 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> rdfs:label "CoberturaDeParmesao"@pt , "ParmezanTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Parmezan"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PepperTopping> , _:genid218 .
+
+_:genid218 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> rdfs:label "CoberturaPeperonata"@pt , "PeperonataTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Peperonata"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> , _:genid219 .
+
+_:genid219 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> rdfs:label "CoberturaDeCalabreza"@pt , "PeperoniSausageTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Peperoni Sausage"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PepperTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PepperTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> ;
+	rdfs:label "CoberturaDePimentao"@pt , "PepperTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Pepper"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PetitPoisTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PetitPoisTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid220 .
+
+_:genid220 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PetitPoisTopping> rdfs:label "CoberturaPetitPois"@pt , "PetitPoisTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Petit Pois"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PineKernels
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PineKernels> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NutTopping> ;
+	rdfs:label "CoberturaPineKernels"@pt , "PineKernelTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Pine Kernel"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Food> , _:genid221 .
+
+_:genid221 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasBase> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaBase> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> rdfs:label "Pizza"@en ;
+	rdfs:seeAlso <https://en.wikipedia.org/wiki/Pizza> ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaBase
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaBase> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Food> ;
+	rdfs:label "BaseDaPizza"@pt , "PizzaBase"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Pizza Base"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Food> ;
+	rdfs:label "CoberturaDaPizza"@pt , "PizzaTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Pizza Topping"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid222 .
+
+_:genid222 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#CajunSpiceTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:subClassOf _:genid223 .
+
+_:genid223 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ChickenTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:subClassOf _:genid224 .
+
+_:genid224 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:subClassOf _:genid225 .
+
+_:genid225 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:subClassOf _:genid226 .
+
+_:genid226 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#RedOnionTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:subClassOf _:genid227 .
+
+_:genid227 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#SweetPepperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:subClassOf _:genid228 .
+
+_:genid228 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:subClassOf _:genid229 .
+
+_:genid229 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid230 .
+
+_:genid230 a owl:Class ;
+	owl:unionOf _:genid237 .
+
+_:genid237 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CajunSpiceTopping> ;
+	rdf:rest _:genid236 .
+
+_:genid236 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ChickenTopping> ;
+	rdf:rest _:genid235 .
+
+_:genid235 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> ;
+	rdf:rest _:genid234 .
+
+_:genid234 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid233 .
+
+_:genid233 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#RedOnionTopping> ;
+	rdf:rest _:genid232 .
+
+_:genid232 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SweetPepperTopping> ;
+	rdf:rest _:genid231 .
+
+_:genid231 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> rdfs:label "PolloAdAstra"@en , "PolloAdAstra"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Pollo Ad Astra"@en , "Pollo Ad Astra Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Pollo Ad Astra"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PrawnsTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrawnsTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping> ;
+	rdfs:label "CoberturaDeCamarao"@pt , "PrawnsTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Prawns"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid238 .
+
+_:genid238 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> rdfs:subClassOf _:genid239 .
+
+_:genid239 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> rdfs:subClassOf _:genid240 .
+
+_:genid240 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> rdfs:subClassOf _:genid241 .
+
+_:genid241 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#RosemaryTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> rdfs:subClassOf _:genid242 .
+
+_:genid242 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> rdfs:subClassOf _:genid243 .
+
+_:genid243 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid244 .
+
+_:genid244 a owl:Class ;
+	owl:unionOf _:genid249 .
+
+_:genid249 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping> ;
+	rdf:rest _:genid248 .
+
+_:genid248 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid247 .
+
+_:genid247 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> ;
+	rdf:rest _:genid246 .
+
+_:genid246 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#RosemaryTopping> ;
+	rdf:rest _:genid245 .
+
+_:genid245 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> rdfs:label "CoberturaPrinceCarlo"@pt , "PrinceCarlo"@en ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Prince Carlo"@en , "Prince Carlo Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Prince Carlo"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#QuattroFormaggi
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#QuattroFormaggi> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid250 .
+
+_:genid250 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#FourCheesesTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#QuattroFormaggi> rdfs:subClassOf _:genid251 .
+
+_:genid251 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#QuattroFormaggi> rdfs:subClassOf _:genid252 .
+
+_:genid252 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid253 .
+
+_:genid253 a owl:Class ;
+	owl:unionOf _:genid255 .
+
+_:genid255 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FourCheesesTopping> ;
+	rdf:rest _:genid254 .
+
+_:genid254 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#QuattroFormaggi> rdfs:label "QuatroQueijos"@pt , "QuattroFormaggi"@en ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Quattro Formaggi"@en , "Quattro Formaggi Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Quattro Formaggi"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#RealItalianPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RealItalianPizza> a owl:Class ;
+	owl:equivalentClass _:genid256 .
+
+_:genid256 owl:intersectionOf _:genid259 .
+
+_:genid259 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid257 .
+
+_:genid257 a rdf:List ;
+	rdf:first _:genid258 .
+
+_:genid258 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin> ;
+	owl:hasValue <http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy> .
+
+_:genid257 rdf:rest rdf:nil .
+
+_:genid256 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RealItalianPizza> rdfs:subClassOf _:genid260 .
+
+_:genid260 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasBase> ;
+	owl:allValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyBase> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RealItalianPizza> rdfs:label "PizzaItalianaReal"@pt , "RealItalianPizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any Pizza that has the country of origin, Italy.  RealItalianPizzas must also only have ThinAndCrispy bases."@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Real Italian Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#RedOnionTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RedOnionTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> ;
+	rdfs:label "CoberturaDeCebolaVermelha"@pt , "RedOnionTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Red Onion"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#RocketTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RocketTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid261 .
+
+_:genid261 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RocketTopping> rdfs:label "CoberturaRocket"@pt , "RocketTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Rocket"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Rosa
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Rosa> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid262 .
+
+_:genid262 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GorgonzolaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Rosa> rdfs:subClassOf _:genid263 .
+
+_:genid263 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Rosa> rdfs:subClassOf _:genid264 .
+
+_:genid264 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Rosa> rdfs:subClassOf _:genid265 .
+
+_:genid265 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid266 .
+
+_:genid266 a owl:Class ;
+	owl:unionOf _:genid269 .
+
+_:genid269 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GorgonzolaTopping> ;
+	rdf:rest _:genid268 .
+
+_:genid268 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid267 .
+
+_:genid267 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Rosa> rdfs:label "Rosa"@en , "Rosa"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Rosa"@en , "Rosa Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Rosa"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#RosemaryTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RosemaryTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#HerbSpiceTopping> , _:genid270 .
+
+_:genid270 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#RosemaryTopping> rdfs:label "CoberturaRosemary"@pt , "RosemaryTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Rosemary"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SauceTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SauceTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdfs:label "CoberturaEmMolho"@pt , "SauceTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Sauce"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid271 .
+
+_:genid271 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:subClassOf _:genid272 .
+
+_:genid272 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ArtichokeTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:subClassOf _:genid273 .
+
+_:genid273 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:subClassOf _:genid274 .
+
+_:genid274 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:subClassOf _:genid275 .
+
+_:genid275 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:subClassOf _:genid276 .
+
+_:genid276 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:subClassOf _:genid277 .
+
+_:genid277 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:subClassOf _:genid278 .
+
+_:genid278 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid279 .
+
+_:genid279 a owl:Class ;
+	owl:unionOf _:genid286 .
+
+_:genid286 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> ;
+	rdf:rest _:genid285 .
+
+_:genid285 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ArtichokeTopping> ;
+	rdf:rest _:genid284 .
+
+_:genid284 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> ;
+	rdf:rest _:genid283 .
+
+_:genid283 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> ;
+	rdf:rest _:genid282 .
+
+_:genid282 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid281 .
+
+_:genid281 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid280 .
+
+_:genid280 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> rdfs:label "Siciliana"@en , "Siciliana"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Siciliana"@en , "Siciliana Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Siciliana"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SlicedTomatoTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SlicedTomatoTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> , _:genid287 .
+
+_:genid287 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SlicedTomatoTopping> owl:disjointWith <http://www.co-ode.org/ontologies/pizza/pizza.owl#SundriedTomatoTopping> ;
+	rdfs:label "CoberturaDeTomateFatiado"@pt , "SlicedTomatoTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Sliced Tomato"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid288 .
+
+_:genid288 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GreenPepperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> rdfs:subClassOf _:genid289 .
+
+_:genid289 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#HotSpicedBeefTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> rdfs:subClassOf _:genid290 .
+
+_:genid290 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> rdfs:subClassOf _:genid291 .
+
+_:genid291 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> rdfs:subClassOf _:genid292 .
+
+_:genid292 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> rdfs:subClassOf _:genid293 .
+
+_:genid293 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid294 .
+
+_:genid294 a owl:Class ;
+	owl:unionOf _:genid299 .
+
+_:genid299 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GreenPepperTopping> ;
+	rdf:rest _:genid298 .
+
+_:genid298 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HotSpicedBeefTopping> ;
+	rdf:rest _:genid297 .
+
+_:genid297 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid296 .
+
+_:genid296 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> ;
+	rdf:rest _:genid295 .
+
+_:genid295 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> rdfs:label "SloppyGiuseppe"@en , "SloppyGiuseppe"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Sloppy Giuseppe"@en , "Sloppy Giuseppe Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Sloppy Giuseppe"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid300 .
+
+_:genid300 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> rdfs:subClassOf _:genid301 .
+
+_:genid301 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> rdfs:subClassOf _:genid302 .
+
+_:genid302 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> rdfs:subClassOf _:genid303 .
+
+_:genid303 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> rdfs:subClassOf _:genid304 .
+
+_:genid304 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#RocketTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> rdfs:subClassOf _:genid305 .
+
+_:genid305 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> rdfs:subClassOf _:genid306 .
+
+_:genid306 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid307 .
+
+_:genid307 a owl:Class ;
+	owl:unionOf _:genid313 .
+
+_:genid313 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> ;
+	rdf:rest _:genid312 .
+
+_:genid312 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid311 .
+
+_:genid311 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid310 .
+
+_:genid310 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> ;
+	rdf:rest _:genid309 .
+
+_:genid309 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#RocketTopping> ;
+	rdf:rest _:genid308 .
+
+_:genid308 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> rdfs:label "Soho"@en , "Soho"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Soho"@en , "Soho Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Soho"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Spiciness
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Spiciness> a owl:Class ;
+	owl:equivalentClass _:genid314 .
+
+_:genid314 a owl:Class ;
+	owl:unionOf _:genid317 .
+
+_:genid317 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> ;
+	rdf:rest _:genid316 .
+
+_:genid316 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> ;
+	rdf:rest _:genid315 .
+
+_:genid315 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Spiciness> rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#ValuePartition> ;
+	rdfs:comment "A ValuePartition that describes only values from Hot, Medium or Mild. NB Subclasses can themselves be divided up into further partitions."@en ;
+	rdfs:label "Spiciness"@en , "Tempero"@pt ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Spiciness"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyPizza> a owl:Class ;
+	owl:equivalentClass _:genid318 .
+
+_:genid318 owl:intersectionOf _:genid321 .
+
+_:genid321 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid319 .
+
+_:genid319 a rdf:List ;
+	rdf:first _:genid320 .
+
+_:genid320 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyTopping> .
+
+_:genid319 rdf:rest rdf:nil .
+
+_:genid318 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyPizza> rdfs:label "PizzaTemperada"@pt , "SpicyPizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any pizza that has a spicy topping is a SpicyPizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Spicy Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyPizzaEquivalent
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyPizzaEquivalent> a owl:Class ;
+	owl:equivalentClass _:genid322 .
+
+_:genid322 owl:intersectionOf _:genid329 .
+
+_:genid329 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid323 .
+
+_:genid323 a rdf:List ;
+	rdf:first _:genid324 .
+
+_:genid324 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom _:genid325 .
+
+_:genid325 owl:intersectionOf _:genid328 .
+
+_:genid328 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdf:rest _:genid326 .
+
+_:genid326 a rdf:List ;
+	rdf:first _:genid327 .
+
+_:genid327 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> .
+
+_:genid326 rdf:rest rdf:nil .
+
+_:genid325 a owl:Class .
+
+_:genid323 rdf:rest rdf:nil .
+
+_:genid322 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyPizzaEquivalent> rdfs:comment "An alternative definition for the SpicyPizza which does away with needing a definition of SpicyTopping and uses a slightly more complicated restriction: Pizzas that have at least one topping that is both a PizzaTopping and has spiciness hot are members of this class."@en ;
+	rdfs:label "PizzaTemperadaEquivalente"@pt , "SpicyPizzaEquivalent"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Spicy Pizza Equivalent"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyTopping> a owl:Class ;
+	owl:equivalentClass _:genid330 .
+
+_:genid330 owl:intersectionOf _:genid333 .
+
+_:genid333 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdf:rest _:genid331 .
+
+_:genid331 a rdf:List ;
+	rdf:first _:genid332 .
+
+_:genid332 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> .
+
+_:genid331 rdf:rest rdf:nil .
+
+_:genid330 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpicyTopping> rdfs:label "CoberturaTemperada"@pt , "SpicyTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any pizza topping that has spiciness Hot"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Spicy"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SpinachTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpinachTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid334 .
+
+_:genid334 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SpinachTopping> rdfs:label "CoberturaDeEspinafre"@pt , "SpinachTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Spinach"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SultanaTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SultanaTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#FruitTopping> , _:genid335 .
+
+_:genid335 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SultanaTopping> rdfs:label "CoberturaSultana"@pt , "SultanaTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Sultana"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SundriedTomatoTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SundriedTomatoTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> , _:genid336 .
+
+_:genid336 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SundriedTomatoTopping> rdfs:label "CoberturaDeTomateRessecadoAoSol"@pt , "SundriedTomatoTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Sundried Tomato"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#SweetPepperTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SweetPepperTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PepperTopping> , _:genid337 .
+
+_:genid337 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#SweetPepperTopping> rdfs:label "CoberturaDePimentaoDoce"@pt , "SweetPepperTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Sweet Pepper"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyBase
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyBase> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaBase> ;
+	rdfs:label "BaseFinaEQuebradica"@pt , "ThinAndCrispyBase"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Thin And Crispy Base"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyPizza> a owl:Class ;
+	owl:equivalentClass _:genid338 .
+
+_:genid338 owl:intersectionOf _:genid341 .
+
+_:genid341 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid339 .
+
+_:genid339 a rdf:List ;
+	rdf:first _:genid340 .
+
+_:genid340 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasBase> ;
+	owl:allValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyBase> .
+
+_:genid339 rdf:rest rdf:nil .
+
+_:genid338 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ThinAndCrispyPizza> rdfs:label "ThinAndCrispyPizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Thin And Crispy Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#TobascoPepperSauce
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#TobascoPepperSauce> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#SauceTopping> , _:genid342 .
+
+_:genid342 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#TobascoPepperSauce> rdfs:label "MolhoTobascoPepper"@pt , "TobascoPepperSauceTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Tobasco Pepper Sauce"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> , _:genid343 .
+
+_:genid343 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasSpiciness> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> rdfs:label "CoberturaDeTomate"@pt , "TomatoTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Tomato"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#UnclosedPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#UnclosedPizza> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> , _:genid344 .
+
+_:genid344 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#UnclosedPizza> rdfs:comment "An unclosed Pizza cannot be inferred to be either a VegetarianPizza or a NonVegetarianPizza, because it might have other toppings." ;
+	rdfs:label "PizzaAberta"@pt , "UnclosedPizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Unclosed Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#ValuePartition
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#ValuePartition> a owl:Class ;
+	rdfs:comment "A ValuePartition is a pattern that describes a restricted set of classes from which a property can be associated. The parent class is used in restrictions, and the covering axiom means that only members of the subclasses may be used as values. The possible subclasses cannot be extended without updating the ValuePartition class." ;
+	rdfs:label "ValorDaParticao"@pt , "ValuePartition"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Value Partition"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdfs:label "CoberturaDeVegetais"@pt , "VegetableTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Vegetable Topping"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizza
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizza> a owl:Class ;
+	owl:equivalentClass _:genid345 .
+
+_:genid345 owl:intersectionOf _:genid352 .
+
+_:genid352 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid349 .
+
+_:genid349 a rdf:List ;
+	rdf:first _:genid350 .
+
+_:genid350 a owl:Class ;
+	owl:complementOf _:genid351 .
+
+_:genid351 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping> .
+
+_:genid349 rdf:rest _:genid346 .
+
+_:genid346 a rdf:List ;
+	rdf:first _:genid347 .
+
+_:genid347 a owl:Class ;
+	owl:complementOf _:genid348 .
+
+_:genid348 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> .
+
+_:genid346 rdf:rest rdf:nil .
+
+_:genid345 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizza> rdfs:label "PizzaVegetariana"@pt , "VegetarianPizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#definition> "Any pizza that does not have fish topping and does not have meat topping is a VegetarianPizza. Note that instances of this class do not need to have any toppings at all."@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Vegetarian Pizza"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizzaEquivalent1
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizzaEquivalent1> a owl:Class ;
+	owl:equivalentClass _:genid353 .
+
+_:genid353 owl:intersectionOf _:genid356 .
+
+_:genid356 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid354 .
+
+_:genid354 a rdf:List ;
+	rdf:first _:genid355 .
+
+_:genid355 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianTopping> .
+
+_:genid354 rdf:rest rdf:nil .
+
+_:genid353 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizzaEquivalent1> rdfs:comment "Any pizza that only has vegetarian toppings or no toppings is a VegetarianPizzaEquiv1. Should be inferred to be equivalent to VegetarianPizzaEquiv2.  Not equivalent to VegetarianPizza because PizzaTopping is not covering"@en ;
+	rdfs:label "PizzaVegetarianaEquivalente1"@pt , "VegetarianPizza1"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Vegetarian Pizza1"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizzaEquivalent2
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizzaEquivalent2> a owl:Class ;
+	owl:equivalentClass _:genid357 .
+
+_:genid357 owl:intersectionOf _:genid367 .
+
+_:genid367 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid358 .
+
+_:genid358 a rdf:List ;
+	rdf:first _:genid359 .
+
+_:genid359 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid360 .
+
+_:genid360 a owl:Class ;
+	owl:unionOf _:genid366 .
+
+_:genid366 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> ;
+	rdf:rest _:genid365 .
+
+_:genid365 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FruitTopping> ;
+	rdf:rest _:genid364 .
+
+_:genid364 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HerbSpiceTopping> ;
+	rdf:rest _:genid363 .
+
+_:genid363 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#NutTopping> ;
+	rdf:rest _:genid362 .
+
+_:genid362 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SauceTopping> ;
+	rdf:rest _:genid361 .
+
+_:genid361 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> ;
+	rdf:rest rdf:nil .
+
+_:genid358 rdf:rest rdf:nil .
+
+_:genid357 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianPizzaEquivalent2> rdfs:comment "An alternative to VegetarianPizzaEquiv1 that does not require a definition of VegetarianTopping. Perhaps more difficult to maintain. Not equivalent to VegetarianPizza"@en ;
+	rdfs:label "PizzaVegetarianaEquivalente2"@pt , "VegetarianPizza2"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Vegetarian Pizza2"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianTopping
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianTopping> a owl:Class ;
+	owl:equivalentClass _:genid368 .
+
+_:genid368 owl:intersectionOf _:genid377 .
+
+_:genid377 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdf:rest _:genid369 .
+
+_:genid369 a rdf:List ;
+	rdf:first _:genid370 .
+
+_:genid370 a owl:Class ;
+	owl:unionOf _:genid376 .
+
+_:genid376 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> ;
+	rdf:rest _:genid375 .
+
+_:genid375 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FruitTopping> ;
+	rdf:rest _:genid374 .
+
+_:genid374 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HerbSpiceTopping> ;
+	rdf:rest _:genid373 .
+
+_:genid373 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#NutTopping> ;
+	rdf:rest _:genid372 .
+
+_:genid372 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SauceTopping> ;
+	rdf:rest _:genid371 .
+
+_:genid371 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> ;
+	rdf:rest rdf:nil .
+
+_:genid369 rdf:rest rdf:nil .
+
+_:genid368 a owl:Class .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetarianTopping> rdfs:comment "An example of a covering axiom. VegetarianTopping is equivalent to the union of all toppings in the given axiom. VegetarianToppings can only be Cheese or Vegetable or....etc."@en ;
+	rdfs:label "CoberturaVegetariana"@pt , "VegetarianTopping"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Vegetarian Topping"@en .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> a owl:Class ;
+	rdfs:subClassOf <http://www.co-ode.org/ontologies/pizza/pizza.owl#NamedPizza> , _:genid378 .
+
+_:genid378 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid379 .
+
+_:genid379 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid380 .
+
+_:genid380 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid381 .
+
+_:genid381 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid382 .
+
+_:genid382 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#PineKernels> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid383 .
+
+_:genid383 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#SultanaTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid384 .
+
+_:genid384 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:someValuesFrom <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid385 .
+
+_:genid385 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasTopping> ;
+	owl:allValuesFrom _:genid386 .
+
+_:genid386 a owl:Class ;
+	owl:unionOf _:genid393 .
+
+_:genid393 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> ;
+	rdf:rest _:genid392 .
+
+_:genid392 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid391 .
+
+_:genid391 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid390 .
+
+_:genid390 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> ;
+	rdf:rest _:genid389 .
+
+_:genid389 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PineKernels> ;
+	rdf:rest _:genid388 .
+
+_:genid388 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SultanaTopping> ;
+	rdf:rest _:genid387 .
+
+_:genid387 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:subClassOf _:genid394 .
+
+_:genid394 a owl:Restriction ;
+	owl:onProperty <http://www.co-ode.org/ontologies/pizza/pizza.owl#hasCountryOfOrigin> ;
+	owl:hasValue <http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy> .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> rdfs:label "Veneziana"@en , "Veneziana"@pt ;
+	<http://www.w3.org/2004/02/skos/core#altLabel> "Veneziana"@en , "Veneziana Pizza"@en ;
+	<http://www.w3.org/2004/02/skos/core#prefLabel> "Veneziana"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#America
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#America> a owl:NamedIndividual , <http://www.co-ode.org/ontologies/pizza/pizza.owl#Country> , owl:Thing .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#England
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#England> a owl:NamedIndividual , <http://www.co-ode.org/ontologies/pizza/pizza.owl#Country> , owl:Thing .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#France
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#France> a owl:NamedIndividual , <http://www.co-ode.org/ontologies/pizza/pizza.owl#Country> , owl:Thing .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Germany
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Germany> a owl:NamedIndividual , <http://www.co-ode.org/ontologies/pizza/pizza.owl#Country> , owl:Thing .
+# 
+# http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy> a owl:NamedIndividual , <http://www.co-ode.org/ontologies/pizza/pizza.owl#Country> , owl:Thing .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    General axioms
+# #
+# #################################################################
+# 
+# 
+
+_:genid395 a owl:AllDisjointClasses ;
+	owl:members _:genid418 .
+
+_:genid418 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#American> ;
+	rdf:rest _:genid417 .
+
+_:genid417 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AmericanHot> ;
+	rdf:rest _:genid416 .
+
+_:genid416 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Cajun> ;
+	rdf:rest _:genid415 .
+
+_:genid415 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Capricciosa> ;
+	rdf:rest _:genid414 .
+
+_:genid414 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Caprina> ;
+	rdf:rest _:genid413 .
+
+_:genid413 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Fiorentina> ;
+	rdf:rest _:genid412 .
+
+_:genid412 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FourSeasons> ;
+	rdf:rest _:genid411 .
+
+_:genid411 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FruttiDiMare> ;
+	rdf:rest _:genid410 .
+
+_:genid410 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Giardiniera> ;
+	rdf:rest _:genid409 .
+
+_:genid409 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#LaReine> ;
+	rdf:rest _:genid408 .
+
+_:genid408 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Margherita> ;
+	rdf:rest _:genid407 .
+
+_:genid407 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mushroom> ;
+	rdf:rest _:genid406 .
+
+_:genid406 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Napoletana> ;
+	rdf:rest _:genid405 .
+
+_:genid405 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Parmense> ;
+	rdf:rest _:genid404 .
+
+_:genid404 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PolloAdAstra> ;
+	rdf:rest _:genid403 .
+
+_:genid403 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PrinceCarlo> ;
+	rdf:rest _:genid402 .
+
+_:genid402 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#QuattroFormaggi> ;
+	rdf:rest _:genid401 .
+
+_:genid401 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Rosa> ;
+	rdf:rest _:genid400 .
+
+_:genid400 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Siciliana> ;
+	rdf:rest _:genid399 .
+
+_:genid399 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SloppyGiuseppe> ;
+	rdf:rest _:genid398 .
+
+_:genid398 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Soho> ;
+	rdf:rest _:genid397 .
+
+_:genid397 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#UnclosedPizza> ;
+	rdf:rest _:genid396 .
+
+_:genid396 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Veneziana> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid419 a owl:AllDisjointClasses ;
+	owl:members _:genid422 .
+
+_:genid422 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AnchoviesTopping> ;
+	rdf:rest _:genid421 .
+
+_:genid421 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MixedSeafoodTopping> ;
+	rdf:rest _:genid420 .
+
+_:genid420 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PrawnsTopping> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid423 a owl:AllDisjointClasses ;
+	owl:members _:genid436 .
+
+_:genid436 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ArtichokeTopping> ;
+	rdf:rest _:genid435 .
+
+_:genid435 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#AsparagusTopping> ;
+	rdf:rest _:genid434 .
+
+_:genid434 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CaperTopping> ;
+	rdf:rest _:genid433 .
+
+_:genid433 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GarlicTopping> ;
+	rdf:rest _:genid432 .
+
+_:genid432 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#LeekTopping> ;
+	rdf:rest _:genid431 .
+
+_:genid431 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MushroomTopping> ;
+	rdf:rest _:genid430 .
+
+_:genid430 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OliveTopping> ;
+	rdf:rest _:genid429 .
+
+_:genid429 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#OnionTopping> ;
+	rdf:rest _:genid428 .
+
+_:genid428 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PepperTopping> ;
+	rdf:rest _:genid427 .
+
+_:genid427 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PetitPoisTopping> ;
+	rdf:rest _:genid426 .
+
+_:genid426 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#RocketTopping> ;
+	rdf:rest _:genid425 .
+
+_:genid425 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SpinachTopping> ;
+	rdf:rest _:genid424 .
+
+_:genid424 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#TomatoTopping> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid437 a owl:AllDisjointClasses ;
+	owl:members _:genid445 .
+
+_:genid445 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#CheeseTopping> ;
+	rdf:rest _:genid444 .
+
+_:genid444 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FishTopping> ;
+	rdf:rest _:genid443 .
+
+_:genid443 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FruitTopping> ;
+	rdf:rest _:genid442 .
+
+_:genid442 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HerbSpiceTopping> ;
+	rdf:rest _:genid441 .
+
+_:genid441 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MeatTopping> ;
+	rdf:rest _:genid440 .
+
+_:genid440 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#NutTopping> ;
+	rdf:rest _:genid439 .
+
+_:genid439 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SauceTopping> ;
+	rdf:rest _:genid438 .
+
+_:genid438 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#VegetableTopping> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid446 a owl:AllDisjointClasses ;
+	owl:members _:genid450 .
+
+_:genid450 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ChickenTopping> ;
+	rdf:rest _:genid449 .
+
+_:genid449 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HamTopping> ;
+	rdf:rest _:genid448 .
+
+_:genid448 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#HotSpicedBeefTopping> ;
+	rdf:rest _:genid447 .
+
+_:genid447 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperoniSausageTopping> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid451 a owl:AllDisjointClasses ;
+	owl:members _:genid456 .
+
+_:genid456 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#FourCheesesTopping> ;
+	rdf:rest _:genid455 .
+
+_:genid455 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GoatsCheeseTopping> ;
+	rdf:rest _:genid454 .
+
+_:genid454 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GorgonzolaTopping> ;
+	rdf:rest _:genid453 .
+
+_:genid453 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#MozzarellaTopping> ;
+	rdf:rest _:genid452 .
+
+_:genid452 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#ParmesanTopping> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid457 a owl:AllDisjointClasses ;
+	owl:members _:genid461 .
+
+_:genid461 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#GreenPepperTopping> ;
+	rdf:rest _:genid460 .
+
+_:genid460 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#JalapenoPepperTopping> ;
+	rdf:rest _:genid459 .
+
+_:genid459 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PeperonataTopping> ;
+	rdf:rest _:genid458 .
+
+_:genid458 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#SweetPepperTopping> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid462 a owl:AllDisjointClasses ;
+	owl:members _:genid465 .
+
+_:genid465 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Hot> ;
+	rdf:rest _:genid464 .
+
+_:genid464 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Medium> ;
+	rdf:rest _:genid463 .
+
+_:genid463 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Mild> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid466 a owl:AllDisjointClasses ;
+	owl:members _:genid470 .
+
+_:genid470 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#IceCream> ;
+	rdf:rest _:genid469 .
+
+_:genid469 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza> ;
+	rdf:rest _:genid468 .
+
+_:genid468 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaBase> ;
+	rdf:rest _:genid467 .
+
+_:genid467 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#PizzaTopping> ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid471 a owl:AllDifferent ;
+	owl:distinctMembers _:genid476 .
+
+_:genid476 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#America> ;
+	rdf:rest _:genid475 .
+
+_:genid475 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#England> ;
+	rdf:rest _:genid474 .
+
+_:genid474 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#France> ;
+	rdf:rest _:genid473 .
+
+_:genid473 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Germany> ;
+	rdf:rest _:genid472 .
+
+_:genid472 a rdf:List ;
+	rdf:first <http://www.co-ode.org/ontologies/pizza/pizza.owl#Italy> ;
+	rdf:rest rdf:nil .
+# 
+# Generated by the OWL API (version 5.0.3.20160910-2120) https://github.com/owlcs/owlapi/
