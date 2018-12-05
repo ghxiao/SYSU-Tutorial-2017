@@ -1,0 +1,29 @@
+dnareference("<http://identifiers.org/ensembl/ENSG00000023330>").
+name("<http://identifiers.org/ensembl/ENSG00000023330>", "ENSEMBL:ENSG00000023330 ALAS1").
+unificationxref("<http://www.reactome.org/biopax/46/48887#UnificationXref63516>").
+xref("<http://identifiers.org/ensembl/ENSG00000023330>", "<http://www.reactome.org/biopax/46/48887#UnificationXref63516>").
+biosource("<http://identifiers.org/taxonomy/9606>").
+organism("<http://identifiers.org/ensembl/ENSG00000023330>", "<http://identifiers.org/taxonomy/9606>").
+unificationxref("<http://www.reactome.org/biopax/46/168245#UnificationXref108>").
+xref("<http://identifiers.org/taxonomy/9606>", "<http://www.reactome.org/biopax/46/168245#UnificationXref108>").
+unificationxref("<http://www.reactome.org/biopax/46/49130#UnificationXref248>").
+xref("<http://identifiers.org/taxonomy/9606>", "<http://www.reactome.org/biopax/46/49130#UnificationXref248>").
+id("<http://www.reactome.org/biopax/46/49130#UnificationXref248>", "9606").
+unificationxref("<http://www.reactome.org/biopax/46/53305#UnificationXref2>").
+xref("<http://identifiers.org/taxonomy/9606>", "<http://www.reactome.org/biopax/46/53305#UnificationXref2>").
+unificationxref("<http://www.reactome.org/biopax/46/48887#UnificationXref6>").
+xref("<http://identifiers.org/taxonomy/9606>", "<http://www.reactome.org/biopax/46/48887#UnificationXref6>").
+db("<http://www.reactome.org/biopax/46/48887#UnificationXref6>", "NCBI Taxonomy").
+db("<http://www.reactome.org/biopax/46/48887#UnificationXref63516>", "ENSEMBL").
+proteinreference("<http://identifiers.org/ensembl/ENSGALP00000000379>").
+name("<http://identifiers.org/ensembl/ENSGALP00000000379>", "hydroxymethylbilane synthase").
+biosource("<http://identifiers.org/taxonomy/9031>").
+organism("<http://identifiers.org/ensembl/ENSGALP00000000379>", "<http://identifiers.org/taxonomy/9031>").
+unificationxref("<http://www.reactome.org/biopax/46/48892#UnificationXref3274>").
+xref("<http://identifiers.org/taxonomy/9031>", "<http://www.reactome.org/biopax/46/48892#UnificationXref3274>").
+db("<http://www.reactome.org/biopax/46/48892#UnificationXref3274>", "NCBI Taxonomy").
+rnareference("<http://identifiers.org/ensembl/ENSMUST00000028288>").
+biosource("<http://identifiers.org/taxonomy/10090>").
+organism("<http://identifiers.org/ensembl/ENSMUST00000028288>", "<http://identifiers.org/taxonomy/10090>").
+unificationxref("<http://www.reactome.org/biopax/46/49591#UnificationXref1578>").
+xref("<http://identifiers.org/taxonomy/10090>", "<http://www.reactome.org/biopax/46/49591#UnificationXref1578>").

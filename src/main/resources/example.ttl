@@ -1,0 +1,55 @@
+<http://identifiers.org/ensembl/ENSG00000023330> a <http://www.biopax.org/release/biopax-level3.owl#DnaReference> ;
+        <http://www.biopax.org/release/biopax-level3.owl#name> "ENSEMBL:ENSG00000023330 ALAS1"^^<http://www.w3.org/2001/XMLSchema#string> .
+
+<http://www.reactome.org/biopax/46/48887#UnificationXref63516> a <http://www.biopax.org/release/biopax-level3.owl#UnificationXref> .
+
+<http://identifiers.org/ensembl/ENSG00000023330> <http://www.biopax.org/release/biopax-level3.owl#xref> <http://www.reactome.org/biopax/46/48887#UnificationXref63516> .
+
+<http://identifiers.org/taxonomy/9606> a <http://www.biopax.org/release/biopax-level3.owl#BioSource> .
+
+<http://identifiers.org/ensembl/ENSG00000023330> <http://www.biopax.org/release/biopax-level3.owl#organism> <http://identifiers.org/taxonomy/9606> .
+
+<http://www.reactome.org/biopax/46/168245#UnificationXref108> a <http://www.biopax.org/release/biopax-level3.owl#UnificationXref> .
+
+<http://identifiers.org/taxonomy/9606> <http://www.biopax.org/release/biopax-level3.owl#xref> <http://www.reactome.org/biopax/46/168245#UnificationXref108> .
+
+<http://www.reactome.org/biopax/46/49130#UnificationXref248> a <http://www.biopax.org/release/biopax-level3.owl#UnificationXref> .
+
+<http://identifiers.org/taxonomy/9606> <http://www.biopax.org/release/biopax-level3.owl#xref> <http://www.reactome.org/biopax/46/49130#UnificationXref248> .
+
+<http://www.reactome.org/biopax/46/49130#UnificationXref248> <http://www.biopax.org/release/biopax-level3.owl#id> "9606"^^<http://www.w3.org/2001/XMLSchema#string> .
+
+<http://www.reactome.org/biopax/46/53305#UnificationXref2> a <http://www.biopax.org/release/biopax-level3.owl#UnificationXref> .
+
+<http://identifiers.org/taxonomy/9606> <http://www.biopax.org/release/biopax-level3.owl#xref> <http://www.reactome.org/biopax/46/53305#UnificationXref2> .
+
+<http://www.reactome.org/biopax/46/48887#UnificationXref6> a <http://www.biopax.org/release/biopax-level3.owl#UnificationXref> .
+
+<http://identifiers.org/taxonomy/9606> <http://www.biopax.org/release/biopax-level3.owl#xref> <http://www.reactome.org/biopax/46/48887#UnificationXref6> .
+
+<http://www.reactome.org/biopax/46/48887#UnificationXref6> <http://www.biopax.org/release/biopax-level3.owl#db> "NCBI Taxonomy"^^<http://www.w3.org/2001/XMLSchema#string> .
+
+<http://www.reactome.org/biopax/46/48887#UnificationXref63516> <http://www.biopax.org/release/biopax-level3.owl#db> "ENSEMBL"^^<http://www.w3.org/2001/XMLSchema#string> .
+
+<http://identifiers.org/ensembl/ENSGALP00000000379> a <http://www.biopax.org/release/biopax-level3.owl#ProteinReference> ;
+        <http://www.biopax.org/release/biopax-level3.owl#name> "hydroxymethylbilane synthase"^^<http://www.w3.org/2001/XMLSchema#string> .
+
+<http://identifiers.org/taxonomy/9031> a <http://www.biopax.org/release/biopax-level3.owl#BioSource> .
+
+<http://identifiers.org/ensembl/ENSGALP00000000379> <http://www.biopax.org/release/biopax-level3.owl#organism> <http://identifiers.org/taxonomy/9031> .
+
+<http://www.reactome.org/biopax/46/48892#UnificationXref3274> a <http://www.biopax.org/release/biopax-level3.owl#UnificationXref> .
+
+<http://identifiers.org/taxonomy/9031> <http://www.biopax.org/release/biopax-level3.owl#xref> <http://www.reactome.org/biopax/46/48892#UnificationXref3274> .
+
+<http://www.reactome.org/biopax/46/48892#UnificationXref3274> <http://www.biopax.org/release/biopax-level3.owl#db> "NCBI Taxonomy"^^<http://www.w3.org/2001/XMLSchema#string> .
+
+<http://identifiers.org/ensembl/ENSMUST00000028288> a <http://www.biopax.org/release/biopax-level3.owl#RnaReference> .
+
+<http://identifiers.org/taxonomy/10090> a <http://www.biopax.org/release/biopax-level3.owl#BioSource> .
+
+<http://identifiers.org/ensembl/ENSMUST00000028288> <http://www.biopax.org/release/biopax-level3.owl#organism> <http://identifiers.org/taxonomy/10090> .
+
+<http://www.reactome.org/biopax/46/49591#UnificationXref1578> a <http://www.biopax.org/release/biopax-level3.owl#UnificationXref> .
+
+<http://identifiers.org/taxonomy/10090> <http://www.biopax.org/release/biopax-level3.owl#xref> <http://www.reactome.org/biopax/46/49591#UnificationXref1578> .
